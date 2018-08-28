@@ -23,25 +23,26 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.elasticsearch.gradle:build-tools:6.0.0"
+        classpath "org.elasticsearch.gradle:build-tools:6.4.0"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7"
     }
 }
 
 apply plugin: 'idea'
+apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'elasticsearch.esplugin'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
-//repositories {
-//    maven {
-//        name 'bintray-akuznetsov-russianmorphology'
-//        url "http://dl.bintray.com/akuznetsov/russianmorphology"
-//    }
-//}
+repositories {
+    maven {
+        name 'bintray-radugalik-russianmorphology'
+        url "http://dl.bintray.com/radugalik/russianmorphology"
+    }
+}
 
-version = '6.0.0-SNAPSHOT'
+version = '6.4.0'
 
 esplugin {
     description 'English and Russian Morphology for ElasticSearch.'
@@ -51,9 +52,9 @@ esplugin {
 esplugin.version = version
 
 dependencies {
-    compile "org.apache.lucene.morphology:russian:1.4-SNAPSHOT"
-    compile "org.apache.lucene.morphology:english:1.4-SNAPSHOT"
-    compile "org.apache.lucene.morphology:morph:1.4-SNAPSHOT"
+    compile "org.apache.lucene.morphology:russian:1.5"
+    compile "org.apache.lucene.morphology:english:1.5"
+    compile "org.apache.lucene.morphology:morph:1.5"
 }
 
 publishing {
@@ -66,21 +67,6 @@ publishing {
             artifact sourcesJar
             artifact bundlePlugin
         }
-    }
-}
-
-
-// Only needed if we publish to bintray
-if (project.hasProperty('bintrayUser')) {
-
-    bintray {
-        user = project.property('bintrayUser')
-        key = project.property('bintrayApiKey')
-        pkg {
-            repo = 'elasticsearch-plugins'
-            name = 'elasticsearch-analysis-morphology'
-        }
-        publications = ['DefaultPublication']
     }
 }
 

@@ -21,7 +21,7 @@ import com.carrotsearch.randomizedtesting.annotations.ParametersFactory;
 import org.elasticsearch.test.rest.yaml.ClientYamlTestCandidate;
 import org.elasticsearch.test.rest.yaml.ESClientYamlSuiteTestCase;
 
-import java.io.IOException;
+//import java.io.IOException;
 
 public class AnalysisMorphologyRestIT extends ESClientYamlSuiteTestCase {
 
